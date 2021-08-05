@@ -1,5 +1,5 @@
 module "vpc" {
-  source   = "./vpc_module"
+  source   = "vpc_module"
   vpc_name = "ewypych-some-vpc"
   project = "ncs-main"
 }
