@@ -1,12 +1,15 @@
 module "vpc" {
-  for_each = local.vpcs
+  #for_each = local.vpcs
   source   = "./vpc"
 
-  vpcs = local.vpcs
+   = each.value.subnetworks
 }
 
-
-module "codename" {
-  source = "./codename"
-  length = 2
+output "subnets" {
+  value = module.vpc.subnets
 }
+
+# module "codename" {
+#   source = "./codename"
+#   length = 2
+# }
