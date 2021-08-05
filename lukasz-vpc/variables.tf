@@ -1,26 +1,26 @@
 variable "subnets" {
-  type = map
+  type        = map(any)
   description = "Subnets to be created"
 }
 
 variable "name" {
-  type = string
+  type        = string
   description = "VPC name"
 }
 
 variable "description" {
-  type = string
+  type        = string
   description = "VPC description"
 }
 
 variable "auto_create_subnetworks" {
-  type = bool
+  type        = bool
   description = "VPC subnets auto-create"
-  default = false
+  default     = false
 }
 
 variable "routing_mode" {
-  type = string
+  type        = string
   description = "VPC routing mode"
-  default = "GLOBAL"
+  default     = "GLOBAL"
 }

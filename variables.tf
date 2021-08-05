@@ -1,21 +1,21 @@
 variable "name" {
-  type = string
+  type        = string
   description = "VPN name"
 }
 
 variable "description" {
-  type = string
+  type        = string
   description = "VPC description"
 }
 
 variable "auto_create_subnetworks" {
-  type = bool
+  type        = bool
   description = "Subnets auto-create"
-  default = false
+  default     = false
 }
 
 variable "routing_mode" {
-  type = string
+  type        = string
   description = "Routing mode"
-  default = "REGIONAL"
+  default     = "REGIONAL"
 }
