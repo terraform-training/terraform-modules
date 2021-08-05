@@ -3,7 +3,7 @@ resource "random_pet" "main" {
 }
 
 output "codename" {
-  value = random_pet.main.id
+  value       = random_pet.main.id
   description = "Nazwa kodowa (wylosowana)"
 }
 
