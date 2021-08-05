@@ -13,3 +13,5 @@ resource "google_compute_subnetwork" "subnet" {
   network                  = google_compute_network.vpc.id
   private_ip_google_access = each.value["private_ip_google_access"]
 }
+
+
