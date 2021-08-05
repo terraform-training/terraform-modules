@@ -4,6 +4,7 @@ output "ip" {
 
 output "private_key" {
   value = module.key.private_key
+  sensitive = true
 }
 
 output "public_key" {
