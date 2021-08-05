@@ -1,29 +1,36 @@
-resource "google_compute_network" "vpc_network" {
-  for_each                = toset(var.vpcs)
-  name                    = each.key
-  auto_create_subnetworks = each.value.auto_create_subnetworks
-}
+# resource "google_compute_network" "vpc_network" {
+#   for_each                = var.vpcs
+#   name                    = each.key
+#   auto_create_subnetworks = each.value.auto_create_subnetworks
+# }
 
 locals {
-  subnetworks = {
-    for subnetwork in var.vpc.subnetworks : subnetwork => {
-      name = var.vpc.subnetworks.name
-      ip_cidr_range = var.vpc.subnetworks.ip_cidr_range
-      region = var.vpc.subnetworks.region
-    }
-  }
+  all_subnets = flatten([
+    for key, vpc in var.vpcs : [
+      for subnet in vpc.subnetworks : {
+        ip_cidr_range = subnet.ip_cidr_range
+        name = subnet.name
+        region = subnet.region
+        vpc = key
+      }
+    ] 
+  ])
 }
 
-resource "google_compute_subnetwork" "subnetworks" {
-  for_each      = toset(var.vpcs)
-  name          = each.value.subnetworks.name
-  ip_cidr_range = each.value.ip_cidr_range
-  region        = each.value.region
-  network       = google_compute_network.vpc_network[each.key].id
+output "subnets" {
+  value = local.all_subnets
 }
+
+# resource "google_compute_subnetwork" "subnetworks" {
+#   for_each      = var.vpcs
+#   name          = each.value.subnetworks.name
+#   ip_cidr_range = each.value.ip_cidr_range
+#   region        = each.value.region
+#   network       = google_compute_network.vpc_network[each.key].id
+# }
 
 variable "vpcs" {
-  type = object({})
+  type = map
     #type = object({
     #    name          = string
     #    ip_cidr_range = string
