@@ -33,7 +33,7 @@ resource "google_compute_instance" "bastion" {
     email = google_service_account.bastion.email
     # https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes
     scopes = [
-      "https://www.googleapis.com/auth/devstorage.read_write",
+      "https://www.googleapis.com/auth/devstorage.readonly",
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/compute.readonly",
       "https://www.googleapis.com/auth/monitoring.write",
