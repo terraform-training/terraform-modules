@@ -5,7 +5,7 @@
 *.tfstate
 *.tfstate.*
 
-/account.json
+account.json
 
 # Crash log files
 crash.log
