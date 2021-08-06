@@ -14,12 +14,12 @@ module "bastion" {
 }
 
 module "firewall" {
-  source = "../modules/firewall_module"
-  network_tag = local.machine_details.network_tag
+  source        = "../modules/firewall_module"
+  network_tag   = local.machine_details.network_tag
   port_incoming = local.machine_details.allowed_port
-  rule_name = "${local.prefix}-allow-22"
-  source_range = local.machine_details.source_range
-  vpc_name = module.vpc.self_link
+  rule_name     = "${local.prefix}-allow-22"
+  source_range  = local.machine_details.source_range
+  vpc_name      = module.vpc.self_link
 }
 
 module "bucket_module" {
