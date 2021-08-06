@@ -6,6 +6,8 @@
 *.tfstate.*
 
 account.json
+*.key
+.idea/*
 
 # Crash log files
 crash.log
