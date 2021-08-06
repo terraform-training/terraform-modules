@@ -14,7 +14,7 @@ module "bastion" {
 }
 
 module "firewall" {
-  source = "./modules/firewall_module"
+  source = "../modules/firewall_module"
   network_tag = local.machine_details.network_tag
   port_incoming = local.machine_details.allowed_port
   rule_name = "${local.prefix}-allow-22"
@@ -24,7 +24,7 @@ module "firewall" {
 
 module "bucket_module" {
   for_each      = local.buckets_names
-  source        = "./modules/bucket_module"
+  source        = "../modules/bucket_module"
   name          = each.value["name"]
   location      = each.value["location"]
   force_destroy = each.value["force_destroy"]
